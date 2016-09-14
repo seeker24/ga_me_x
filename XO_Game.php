@@ -166,7 +166,7 @@ function inlineMessage($inline){
 	$query=$inline['query'];
 	
 	//apiRequest("sendMessage",array("chat_id"=>111825543,"text"=>json_encode($inline['from'])));
-	apiRequest("answerInlineQuery",array("inline_query_id"=>$id,"results"=>array(array("type"=>"article","id"=>$query,"title"=>"بازی XO","input_message_content"=>array("message_text"=>"<b>بازی XO</b>\n برای شروع روی دگمه زیر کلیک کنید👇🏻👇🏻👇🏻","parse_mode"=>"HTML","disable_web_page_preview"=>false),
+	apiRequest("answerInlineQuery",array("inline_query_id"=>$id,"results"=>array(array("type"=>"article","id"=>$query,"title"=>"بازی XO","input_message_content"=>array("message_text"=>"<b>بازی XO</b>\n برای شروع روی دکمه زیر کلیک کنید👇🏻👇🏻👇🏻","parse_mode"=>"HTML","disable_web_page_preview"=>false),
 	    "reply_markup"=>array(
 	        "inline_keyboard"=>array(
 			    array(array("text"=>"شروع بازی!","callback_data"=>"play_".$chat_id))
@@ -188,7 +188,7 @@ function callbackMessage($callback){
 	  if(strpos($data, "play") === 0){
 		  $data=explode("_",$data);
 		  if($data[1]==$pv_id){
-			  apiRequest("answerCallbackQuery",array('callback_query_id'=>$callback_id,'text'=>"شما آغاز کننده ی این بازی هستید بنابراین باید یکی از دوستانتان روی دگمه کلیک کنه!",'show_alert'=>false));
+			  apiRequest("answerCallbackQuery",array('callback_query_id'=>$callback_id,'text'=>"شما آغاز کننده ی این بازی هستید بنابراین باید یکی از دوستانتان روی دکمه کلیک کنه!",'show_alert'=>false));
 		      exit;
 		  }
 		  else{
@@ -202,7 +202,6 @@ function callbackMessage($callback){
 				  }
 			  }
 			  $Tab[3][0]["text"]="ترک بازی!";
-			  $Tab[3][0]["callback_data"]="Left";
 			  
 			  apiRequest("editMessageText",array("inline_message_id"=>$message_id,"text"=>"بازی آغاز شد\n\n بازیکن اول:$P1Name(❌)\nبازیکن دوم:$P2Name(⭕️)\n\n هم اکنون نوبت $P1Name(❌) است.","reply_markup"=>array(
 			    "inline_keyboard"=>$Tab 
@@ -272,7 +271,7 @@ function callbackMessage($callback){
 			  //Tab End
 			  //NextTurn
 			  
-			  if($Tab[$i][$j]["text"]!=" ") apiRequest("answerCallbackQuery",array('callback_query_id'=>$callback_id,'text'=>"شما نمیتوانید دگمه مورد نظر را انتخاب کنید.",'show_alert'=>false));
+			  if($Tab[$i][$j]["text"]!=" ") apiRequest("answerCallbackQuery",array('callback_query_id'=>$callback_id,'text'=>"شما نمیتوانید دکمه مورد نظر را انتخاب کنید.",'show_alert'=>false));
 			  else{
 				  $Tab[$i][$j]["text"]=$Emoji;
                   //
@@ -335,8 +334,7 @@ function callbackMessage($callback){
 							}
 						}
 						
-						$Tab[3][0]["text"]="ترک بازی!";
-			            $Tab[3][0]["callback_data"]="Left";
+						$Tab[3][0]["text"]="ترک بازی!"
                         //apiRequest("sendMessage",array("chat_id"=>111825543,"text"=>json_encode($Tab)));						
 						//Tab
 						
